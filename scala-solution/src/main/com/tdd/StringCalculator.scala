@@ -13,7 +13,13 @@ class StringCalculator {
       total = numbers.toInt
     }
     else {
-      for (number <- numbers.split("[,\n]")) {
+      var delimiter = ","
+      if (numbers.matches("//(.)\n(.)")) {
+        delimiter = numbers.charAt(2).toString
+        numbers = numbers.substring(4)
+      }
+
+      for (number <- numbers.split(s"[$delimiter,\n]")) {
         total += number.toInt
       }
     }
