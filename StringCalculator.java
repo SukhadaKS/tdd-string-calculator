@@ -1,6 +1,6 @@
 package com.tdd;
 
-public class StringCalculator_1 {
+public class StringCalculator {
 
     public int add(String numbers) {
         int sum = 0;
@@ -15,7 +15,7 @@ public class StringCalculator_1 {
     }
 
     public static void main(String[] args) {
-        StringCalculator_1 stringCalculator = new StringCalculator_1();
+        StringCalculator stringCalculator = new StringCalculator();
 
         String result = (stringCalculator.add("") == 0) ? "success.." : "failure..";
         System.out.println(result);
