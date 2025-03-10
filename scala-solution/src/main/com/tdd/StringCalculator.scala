@@ -10,7 +10,7 @@ class StringCalculator {
       0
     }
     else if (numbers.length == 1) {
-      total = numbers.toInt
+      total = convertToInt(numbers)
     }
     else {
       var delimiter = ","
@@ -19,12 +19,35 @@ class StringCalculator {
         numbers = numbers.substring(4)
       }
 
-      for (number <- numbers.split(s"[$delimiter,\n]")) {
-        total += number.toInt
-      }
+      val numList = numbers.split(s"[$delimiter,\n]")
+      total = sum(numList)
     }
 
     total
+  }
+
+  private def sum(numbers: Array[String]): Int = {
+    var total = 0
+    val negativeString = new StringBuilder()
+
+    for (number <- numbers) {
+      if (convertToInt(number) < 0) {
+        if (negativeString.isEmpty)
+          negativeString.append(number)
+        else
+          negativeString.append(",").append(number)
+      }
+    }
+
+    if (negativeString.nonEmpty) {
+      throw new IllegalArgumentException(s"negative numbers not allowed: $negativeString")
+    }
+
+    total
+  }
+
+  private def convertToInt(num: String): Int = {
+    num.toInt
   }
 
 }
