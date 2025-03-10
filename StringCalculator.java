@@ -11,7 +11,14 @@ public class StringCalculator {
             total = Integer.parseInt(numbers);
         }
         else {
-            total = sum(numbers.split("[,\n]"));
+            String delimiter = ",";
+            if (numbers.matches("//(.)\n(.)")) {
+                delimiter = Character.toString(numbers.charAt(2));
+                numbers = numbers.substring(4);
+            }
+
+            String[] numList = numbers.split("[" + delimiter + ",\n]");
+            total = sum(numList);
         }
 
         return total;
@@ -42,8 +49,12 @@ public class StringCalculator {
         result = (stringCalculator.add("9\n1,5") == 15) ? "success.." : "failure..";
         System.out.println(result);
 
+        result = (stringCalculator.add("//;\n3;5") == 8) ? "success.." : "failure..";
+        System.out.println(result);
+
+        result = (stringCalculator.add("//:\n1:5:3") == 9) ? "success.." : "failure..";
+        System.out.println(result);
+
         stringCalculator = null;
     }
-
-
 }
