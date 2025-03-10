@@ -28,4 +28,8 @@ class StringCalculatorTest extends AnyFunSuite with MockitoSugar with Matchers {
   test("testnewline") {
     assert(stringCalculator.add("1\n2,3\n4") === 10)
   }
+
+  test("testOtherDelimiter") {
+    assert(stringCalculator.add("//;\n1;2") === 3)
+  }
 }
