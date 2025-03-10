@@ -24,4 +24,8 @@ class StringCalculatorTest extends AnyFunSuite with MockitoSugar with Matchers {
   test("testMultipleNumbers2") {
     assert(stringCalculator.add("4,6") === 10)
   }
+
+  test("testnewline") {
+    assert(stringCalculator.add("1\n2,3\n4") === 10)
+  }
 }
