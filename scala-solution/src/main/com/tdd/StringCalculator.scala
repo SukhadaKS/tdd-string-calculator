@@ -13,7 +13,7 @@ class StringCalculator {
       total = numbers.toInt
     }
     else {
-      for (number <- numbers.split(",")) {
+      for (number <- numbers.split("[,\n]")) {
         total += number.toInt
       }
     }
