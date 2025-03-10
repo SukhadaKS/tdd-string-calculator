@@ -2,7 +2,8 @@ package com.tdd
 
 class StringCalculator {
 
-  def add(numbers: String): Int = {
+  def add(strNumbers: String): Int = {
+    var numbers = strNumbers
     var total = 0
 
     if (numbers.isEmpty) {
@@ -11,9 +12,13 @@ class StringCalculator {
     else if (numbers.length == 1) {
       total = numbers.toInt
     }
+    else {
+      for (number <- numbers.split(",")) {
+        total += number.toInt
+      }
+    }
 
     total
   }
 
 }
-
