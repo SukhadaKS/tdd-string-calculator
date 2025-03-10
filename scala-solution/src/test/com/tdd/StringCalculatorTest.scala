@@ -32,4 +32,19 @@ class StringCalculatorTest extends AnyFunSuite with MockitoSugar with Matchers {
   test("testOtherDelimiter") {
     assert(stringCalculator.add("//;\n1;2") === 3)
   }
+
+  test("testNegativeNumbers") {
+    try {
+      stringCalculator.add("-1,2")
+    } catch {
+      case e: IllegalArgumentException =>
+        assert(e.getMessage().equals("negative numbers not allowed -1"))
+    }
+    try {
+      stringCalculator.add("1,-2,3,-5")
+    } catch {
+      case e: IllegalArgumentException =>
+        assert(e.getMessage().equals("negative numbers not allowed -2,-5"))
+    }
+  }
 }
